@@ -39,3 +39,17 @@ void maxSubArraySum(int a[], int size)
 
 
 
+2. Count time
+
+
+auto start = high_resolution_clock::now();
+    for (int i = 0; i < N; ++i)
+        v1.push_back(i);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+ 
+    cout << "Method I took " << duration.count() << " microseconds\n"
+    
+    
+    
+    
