@@ -51,5 +51,25 @@ auto start = high_resolution_clock::now();
     cout << "Method I took " << duration.count() << " microseconds\n"
     
     
+3. Binary Search
     
     
+    ll l = 1; ll r = max;
+    while (r - l > 1)
+    {
+        ll mid = l + ((r - l) / 2);
+
+        ll ans = 0;
+       // calculate ans (may be in a loop)
+       // t is the value being searched
+        if (ans >= t)
+        {
+            r = mid;
+        }
+        else
+        {
+            l = mid;
+        }
+    }
+    // Now l and r both can be answer, So check for both of them individually if they satisfy the condition given or not;
+    //return l or r according to above line
