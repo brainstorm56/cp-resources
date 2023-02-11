@@ -73,3 +73,65 @@ auto start = high_resolution_clock::now();
     }
     // Now l and r both can be answer, So check for both of them individually if they satisfy the condition given or not;
     //return l or r according to above line
+
+
+
+4. prime numbers up to N (Sieve of eratosthenes)
+
+	const int N = 0;
+	vector<int> prime(N+5,1);
+	vector<int>primes;
+void sieve(){
+   	prime[0] = prime[1] = 0;
+	for (int i = 2; i * i <= N; i++) {
+    		if (prime[i]) {
+        for (int j = i * i; j <= N; j += i)
+            prime[j] = 0;
+   			      }
+					}
+	for(int i=2;i<=N;i++)
+	{
+   	      if(prime[i]){primes.push_back(i);}
+	}
+     }
+     
+
+5. Prime factors of many numbers optimally (using optimization in sieve)
+
+
+	const int N = 0;
+	vector<int> prime(N+5,1);	
+void sieve() {
+    prime[0] = prime[1] = 0;
+    for (int i = 2; i * i <= N; i++) {
+        if (prime[i] == 1) {
+            for (int j = i * i; j <= N; j += i)
+                prime[j] = i;
+        }
+    }
+    for (int i = 2; i <= N; i++)
+    {
+        if (prime[i] == 1) {prime[i] = i;}
+    }
+}
+void primefactors(ll number, vector<int>&v)
+{
+    while (number >= 2)
+    {
+        int val = prime[number];
+        v.push_back(val);
+        while (value % val == 0)
+        {
+            number = number / val;
+        }
+    }
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
