@@ -127,7 +127,19 @@ void primefactors(ll number, vector<int>&v)
     }
 }
 	
-	
+
+6.  Intersection of two intervals both sides included
+
+	Two intervals [l,r] & [left, right]
+	if (left <= r && l <= right)
+	 {
+		l = max(left, l);
+		r = min(right, r);
+	}
+	else
+	{
+		Null
+	}
 	
 	
 	
