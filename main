@@ -141,8 +141,7 @@ void primefactors(ll number, vector<int>&v)
 		Null
 	}
 	
-	
-	
+7.  Sqrt function takes way more time for a double or floating point than integer value.	
 	
 	
 	
