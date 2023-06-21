@@ -141,8 +141,27 @@ void primefactors(ll number, vector<int>&v)
 		Null
 	}
 	
-7.  Sqrt function takes way more time for a double or floating point than integer value.	
+7.  Sqrt function takes way more time for a double or floating point than integer value.
+
+8. Fenwick trees implementation
+	const int N = 1e5 + 10;
+	int bit[N] {0};
 	
+	void update(ll i, ll x) {
+	  for (; i < N; i += (i & -i))
+	    bit[i] += x;
+	}
+	
+	ll Sum(ll i) {
+	  int ans = 0;
+	  for (; i > 0; i -= (i & -i))
+	    ans += bit[i];
+	  return ans;
+	}
+     a. first update all elements of the array using update function. 
+     b. update function adds the argument provided to it not replace it.
+     c. its written on one based indexing. 
+     d. for sum from l to r sum = Sum(r) - Sum(l-1);
 	
 	
 	
