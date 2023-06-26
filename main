@@ -218,5 +218,16 @@ public:
     }
   }
 };
-	
+
+
+10. Bitwise Operations
+
+bool powerOfTwo(ll x){ return x && !(x&(x-1)); }
+bool chkset(ll x, ll k) { return x&(1<<k); }
+void setbit(ll &x, ll k) { x = x|(1<<k); }
+void unsetbit(ll &x, ll k) { x = x&~(1<<k); }
+void togglebit(ll &x, ll k) { x = x^(1<<k); }
+ll noOfSetBits(ll x) { return __builtin_popcountll(x); }
+
+
 	
