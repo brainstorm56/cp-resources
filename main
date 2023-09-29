@@ -230,4 +230,6 @@ void togglebit(ll &x, ll k) { x = x^(1<<k); }
 ll noOfSetBits(ll x) { return __builtin_popcountll(x); }
 
 
-	
+11.
+suppose: a^b^c^d^e^f^g =0
+Observation: Choose any of the a,b,c,d,e,f,g => for example b,f,g left are (a,c,d,e) => then b^f^g = a^c^d^e.
