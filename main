@@ -233,3 +233,19 @@ ll noOfSetBits(ll x) { return __builtin_popcountll(x); }
 11. bitwsise xor
 suppose: a^b^c^d^e^f^g =0
 Observation: Choose any of the a,b,c,d,e,f,g => for example b,f,g left are (a,c,d,e) => then b^f^g = a^c^d^e.
+
+12. Count the number of nodes below a node in a tree(implemented by undirected graph in a vector<long long>adj[] structure
+
+ll dfs(ll ind, vector<ll>adj[], ll dist[], ll par)
+{
+	ll cnt = 0;
+	for (auto it : adj[ind])
+	{
+		if (it != par)
+		{
+			cnt += dfs(it, adj, dist, ind);
+		}
+	}
+	dist[ind] = cnt;
+	return 1 + cnt;
+}
