@@ -231,8 +231,31 @@ ll noOfSetBits(ll x) { return __builtin_popcountll(x); }
 
 
 11. bitwsise xor
+
 suppose: a^b^c^d^e^f^g =0
 Observation: Choose any of the a,b,c,d,e,f,g => for example b,f,g left are (a,c,d,e) => then b^f^g = a^c^d^e.
+----------------------------------------------------------------------------------------------------------------------
+Numbers 0 to n in binary
+0000
+0001
+0010
+0011
+0100
+0101
+0110
+0111
+1000
+1001
+1010
+1011
+1100
+1101
+1110
+1111
+
+Observation: consider the ith bit, the number of zeroes equals the number of ones in a prefix only when the length of the prefix is a multiple of 2^i.
+Also they alternate between after 2^i numbers.
+
 
 12. Count the number of nodes below a node in a tree(implemented by undirected graph in a vector<long long>adj[] structure
 
