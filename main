@@ -257,7 +257,7 @@ Observation: consider the ith bit, the number of zeroes equals the number of one
 Also they alternate between after 2^i numbers.
 
 
-12. Count the number of nodes below a node in a tree(implemented by undirected graph in a vector<long long>adj[] structure
+12. Count the number of nodes below a node in a tree(implemented by undirected graph in a vector<long long>adj[] structure)
 
 ll dfs(ll ind, vector<ll>adj[], ll dist[], ll par)
 {
@@ -272,3 +272,6 @@ ll dfs(ll ind, vector<ll>adj[], ll dist[], ll par)
 	dist[ind] = cnt;
 	return 1 + cnt;
 }
+
+13. For calculating something from l to r , if it is complex do it in this way (0 to r) - (0 to l)
+    Ex problem : https://codeforces.com/contest/1891/problem/D
