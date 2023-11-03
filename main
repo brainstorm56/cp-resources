@@ -275,3 +275,12 @@ ll dfs(ll ind, vector<ll>adj[], ll dist[], ll par)
 
 13. For calculating something from l to r , if it is complex do it in this way (0 to r) - (0 to l)
     Ex problem : https://codeforces.com/contest/1891/problem/D
+
+14. To handle overflows you can perform the following check to multiply two integers:
+const ll INF = LLONG_MAX; // or 1e18 + 1e9, or anything else you like
+ll a, b;
+...
+ll c = (a >= INF / b ? INF : a * b);
+It is nice to encapsulate this into a function (if you want to use it more than once) alike
+
+ll mult(ll a, ll b) { return (a >= INF / b ? INF : a * b); }
