@@ -286,7 +286,7 @@ It is nice to encapsulate this into a function (if you want to use it more than 
 ll mult(ll a, ll b) { return (a >= INF / b ? INF : a * b); }
 
 
-14.  Segment tree template   (implemented for calculating minimum)
+15.  Segment tree template   (implemented for calculating minimum)
 
 struct node {
     ll min_val;
