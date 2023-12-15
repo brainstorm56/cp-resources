@@ -463,3 +463,18 @@ int main()
 
     return 0;
 }
+
+
+17.   If you want to calculate values of keys from lo to hi, instead of searching for each key which gives time complexity O((hi-lo)*log(n)) 
+      We can do the following which have time complexity O(log(n) + (hi-lo))
+
+	ll calc(ll lo, ll hi, map<ll, ll>& sal2freq)
+	{
+	    ll res = 0;
+	    auto it = sal2freq.lower_bound(lo);
+	    while (it != sal2freq.end() && it->first <= hi) {
+	        res += it->second;
+	        it++;
+	    }
+	    return res;
+	}
