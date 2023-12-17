@@ -478,3 +478,168 @@ int main()
 	    }
 	    return res;
 	}
+
+18.   sqrt decomposition 
+       // Blocking
+	#include <bits/stdc++.h>
+	using namespace std;
+	
+	struct Sqrt {
+		int block_size;
+		vector<int> nums;
+		vector<long long> blocks;
+		Sqrt(int sqrtn, vector<int> &arr) : block_size(sqrtn), blocks(sqrtn, 0) {
+			nums = arr;
+			for (int i = 0; i < nums.size(); i++) {
+				blocks[i / block_size] += nums[i];
+			}
+		}
+	
+		/** O(1) update to set nums[x] to v */
+		void update(int x, int v) {
+			blocks[x / block_size] -= nums[x];
+			nums[x] = v;
+			blocks[x / block_size] += nums[x];
+		}
+	
+		/** O(sqrt(n)) query for sum of [0, r) */
+		long long query(int r) {
+			long long res = 0;
+			for (int i = 0; i < r / block_size; i++) { res += blocks[i]; }
+			for (int i = (r / block_size) * block_size; i < r; i++) {
+				res += nums[i];
+			}
+			return res;
+		}
+	
+		/** O(sqrt(n)) query for sum of [l, r) */
+		long long query(int l, int r) { return query(r) - query(l - 1); }
+	};
+	
+	int main() {
+		int n, q;
+		cin >> n >> q;
+	
+		vector<int> arr(n);
+		for (int i = 0; i < n; i++) { cin >> arr[i]; }
+		Sqrt sq((int)ceil(sqrt(n)), arr);
+	
+		for (int i = 0; i < q; i++) {
+			int t, l, r;
+			cin >> t >> l >> r;
+			if (t == 1) {
+				sq.update(l - 1, r);
+			} else {
+				cout << sq.query(l, r) << "\n";
+			}
+		}
+	}
+
+// Mo's Algorithm // Cses - distinct values queries
+
+#include<bits/stdc++.h>
+using namespace std;
+#define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
+struct query {
+    int l;
+    int r;
+    int idx;
+};
+int v[200200];
+int block_size;;
+bool cmp(query a, query b)
+{
+    if (a.l / block_size == b.l / block_size)
+    {
+        return a.r < b.r;
+    }
+    else
+    {
+        return a.l < b.l;
+    }
+}
+int distinct_values = 0;
+int mp[200100];
+void add(int idx)
+{
+    mp[v[idx]]++;
+    if (mp[v[idx]] == 1)
+    {
+        distinct_values++;
+    }
+}
+void remove(int idx)
+{
+    mp[v[idx]]--;
+    if (mp[v[idx]] == 0)
+    {
+        distinct_values--;
+    }
+}
+int main()
+{
+    fast_cin();
+    int n, q;
+    cin >> n >> q;
+    unordered_map<int, int>m;
+    block_size = (int)(sqrt(n));
+    for (int i = 0; i < n; i++)
+    {
+        cin >> v[i];
+    }
+    int cnt = 1;
+    for (int i = 0; i < n; i++)
+    {
+        if (m.find(v[i]) == m.end())
+        {
+            m[v[i]] = cnt;
+            v[i] = cnt;
+            cnt++;
+        }
+        else
+        {
+            v[i] = m[v[i]];
+        }
+    }
+    vector<query>queries;
+    for (int i = 0; i < q; i++)
+    {
+        int l, r;
+        cin >> l >> r;
+        l--; r--;
+        queries.push_back({l, r, i});
+    }
+    sort(queries.begin(), queries.end(), cmp);
+    int mo_l = 0;
+    int mo_r = -1;
+    vector<int>ans(q);
+    for (int i = 0; i < q; i++)
+    {
+        int left = queries[i].l;
+        int right = queries[i].r;
+        while (mo_r < right)
+        {
+            add(++mo_r);
+        }
+        while (mo_r > right)
+        {
+            remove(mo_r--);
+        }
+        while (mo_l < left)
+        {
+            remove(mo_l++);
+        }
+        while (mo_l > left)
+        {
+            add(--mo_l);
+        }
+        ans[queries[i].idx] = distinct_values;
+
+    }
+    for (int i = 0; i < q; i++)
+    {
+        cout << ans[i] << "\n";
+    }
+
+    return 0;
+}
