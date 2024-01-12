@@ -666,3 +666,16 @@ int main()
 20.  upper bound for number of divisors of some natural number n   is assumed to be O(n^(1/3)).
      link for more - https://codeforces.com/blog/entry/14463
 
+21. Sieve   --- mind[i] gives minimum prime divisor -- maxind[i] gives maximum prime divisor
+
+     	vector<int> mind(N, -1) , maxind;
+
+	  for (int i = 2; i < N; ++i) if (mind[i] == -1)
+	    for (int j = i; j < N; j += i) if (mind[j] == -1)
+	      mind[j] = i;
+
+
+
+	for (int i = 2; i < N; ++i) if (mind[i] == -1)
+	    for (int j = i; j < N; j += i)
+	      mind[j] = i;
