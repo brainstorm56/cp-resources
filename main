@@ -674,8 +674,9 @@ int main()
 	    for (int j = i; j < N; j += i) if (mind[j] == -1)
 	      mind[j] = i;
 
-
-
-	for (int i = 2; i < N; ++i) if (mind[i] == -1)
+	for (int i = 2; i < N; ++i) if (maxind[i] == -1)
 	    for (int j = i; j < N; j += i)
-	      mind[j] = i;
+	      maxind[j] = i;
+
+22. Observation (consecutive numbers) 
+	....+n-2 + n-1 + n + n+1 + n+2+....(n numbers where n is odd) = n^2
