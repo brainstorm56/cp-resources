@@ -1,8 +1,8 @@
 1. (a) Kadane's Algo for calculating maxsum only (without indexes)
 
 
-    int maxSubArray(vector<int>& nums) {
-        int curMax = 0, maxTillNow = INT_MIN;
+    ll maxSubArray(vector<ll>& nums) {
+        ll curMax = 0, maxTillNow = INT_MIN;
         for(auto c : nums)
             curMax = max(c, curMax + c),
             maxTillNow = max(maxTillNow, curMax);
