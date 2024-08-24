@@ -734,3 +734,66 @@ The proof is based on the fact that in each pair of the form (k, mn-m-n-k), exac
 
 24. Bit manipulation technique
     First bit that is not set is log2(mask^(mask|(mask+1))).
+
+25. Tries
+    Bit trie
+struct node{
+    ll freq;
+    node* left;
+    node* right;
+    node()
+    {
+        freq = 0;
+        left = NULL;
+        right = NULL;
+    }
+};
+void insert(ll n, node* head)
+{
+    node* cur = head;
+    cur->freq++;
+    for(int i = 31;i>=0;i--)
+    {
+        if(n&(1<<i))
+        {
+            if(cur->right!=NULL)
+            {
+                cur = cur->right;
+            }
+            else
+            {
+                cur->right = new node;
+                cur = cur->right;
+            }
+        }
+        else{
+            if(cur->left!=NULL)
+            {
+                cur = cur->left;
+            }
+            else
+            {
+                cur->left = new node;
+                cur = cur->left;
+            }
+        }
+        cur->freq++;
+    }
+}
+void delete_node(ll n, node* head)
+{
+    node* cur = head;
+    cur->freq--;
+    for(int i = 31;i>=0;i--)
+    {
+        if(n&(1<<i))
+        {
+            cur = cur->right;
+        }
+        else
+        {
+            cur = cur->left;
+        }
+        cur->freq--;
+    }
+}
