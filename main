@@ -828,3 +828,87 @@ void insert(node* root, string s)
     }
     cur->wend.push_back(s);
 }
+
+
+26. Digit Dp template
+
+vector<ll>num;
+ll dp[12][102][102][2];
+ll powerten[12] = {1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000, 10000000000, 100000000000 };
+ll rec( ll pos, ll digitSum, ll curSum , ll f){
+	// cout<< pos<<" "<< digitSum<<" " << curSum<<" "<< f<<endl;
+	if(pos==num.size()){
+		if(digitSum==0&& curSum==0){
+			return 1;
+		}
+		else{
+			return 0;
+		}
+	}
+
+	if(dp[pos][digitSum][curSum][f]!=-1){
+		return dp[pos][digitSum][curSum][f];
+	}
+
+	ll lmt;
+	if(f==1)
+	{
+		lmt = 9;
+	}
+	else{
+		lmt = num[pos];
+	}
+	ll res = 0;
+	for(ll i = 0; i<=lmt; i++){
+
+		ll newSum = digitSum + i;
+		newSum%=k;
+		ll newCurSum = (curSum +  i*powerten[num.size()-1-pos])%k;
+		ll nf = f;
+		if(f==0 && i<lmt)
+		{
+			nf = 1;
+		}
+
+		res+= rec(pos+1, newSum, newCurSum,  nf);
+	}
+	return dp[pos][digitSum][curSum][f] = res;
+}
+
+ll calc( ll x){
+	num.clear();
+	while(x>0){
+		num.push_back(x%10);
+		x/=10;
+	}
+	reverse(num.begin(), num.end());
+	memset(dp, -1, sizeof(dp));
+	return rec(0, 0,0,  0);
+}
+
+void solve(){
+	ll a,b;
+    cin>>a>>b>>k;
+    ll ans = 0;
+    if(k>100){
+    	ans = 0;
+    }
+    else
+    {
+    	ans = calc(b) - calc(a-1);
+    }
+    cout<<ans<<endl;
+    return;
+}
+int main()
+{
+    fast_cin();
+    ll t;
+    t=1; 
+    cin >> t;  
+    for(int i = 1;i<=t; i++){
+    	cout<<"Case "<<i<<": ";
+    	solve();
+    } 
+     return 0;
+}
